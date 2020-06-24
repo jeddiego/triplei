@@ -1,12 +1,16 @@
 package com.diego.lara.activities
 
+import android.Manifest
 import android.app.SearchManager
 import android.content.Context
+import android.content.pm.PackageManager
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -18,6 +22,8 @@ import com.diego.lara.di.modules.ContextModule
 import com.diego.lara.models.Tiendas
 import com.diego.lara.viewModel.TiendasViewModel
 import com.diego.lara.views.TiendasItemView
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.app_bar_main.view.*
@@ -29,14 +35,16 @@ class MainActivity : AppCompatActivity() {
     var oldLength = 0
     var flagLocalSearch = false
     var queryFlagLocalSearch = ""
+    var currentLatitud = ""
+    var currentLongitud = ""
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     @Inject
     lateinit var viewModel: TiendasViewModel
     private lateinit var binding: ActivityMainBinding
     private val adapterMoviesList = GroupAdapter<GroupieViewHolder>().apply {
         setOnItemClickListener { item, _ ->
             if (item is TiendasItemView) {
-/*                val sheet = ImageAndRatingsDialogFragment.newInstance(item.movies)
-                sheet.show(supportFragmentManager, sheet.simpleClassName())*/
+
             }
         }
     }
@@ -49,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         binding.viewModel = viewModel
         bindViewModel()
         initRecyclerView()
+        getLocationAndPermissions()
     }
 
     private fun bindViewModel() {
@@ -109,6 +118,25 @@ class MainActivity : AppCompatActivity() {
         }
         flagLocalSearch = true
         queryFlagLocalSearch = query
+    }
+
+    fun getLocationAndPermissions() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location : Location? ->
+                currentLatitud = location?.latitude.toString()
+                currentLongitud = location?.longitude.toString()
+            }
     }
 
 }
