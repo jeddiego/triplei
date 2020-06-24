@@ -15,6 +15,6 @@ interface TiendasDiskDS {
     @Query("DELETE FROM tiendas")
     fun truncate()
 
-    @Query("SELECT * FROM tiendas WHERE sucursal like :name ORDER BY sucursal")
+    @Query("SELECT * FROM tiendas WHERE sucursal like :name or determinante like :name or cadena like :name ORDER BY determinante")
     fun readTiendas(name: String): LiveData<List<Tiendas>>
 }
