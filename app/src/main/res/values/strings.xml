@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PruebaTripleI</string>
+    <string name="retrofit_error_unproccess">La petición no se pudo procesar\n(%s)</string>
+    <string name="retrofit_error_timeout">Tiempo de espera excedido</string>
+    <string name="retrofit_error_server">Error al conectarse al servidor\n(%s)</string>
+    <string name="no_internet">No tienes acceso a internet</string>
+    <string name="retrofit_error_body">Error al leer respuesta del servidor</string>
+    <string name="search_title">Sucursal</string>
+    <string name="sucursal">Sucursal:</string>
+    <string name="cadena">Cadena:</string>
+    <string name="latitud">Latitud</string>
+    <string name="longitud">Longitud</string>
+    <string name="determinante">Determinante:</string>
+</resources>

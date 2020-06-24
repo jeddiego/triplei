@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <TextView
+            android:id="@+id/tvTitleDeterminante"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/determinante"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvDeterminante"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@id/tvTitleDeterminante"
+            app:layout_constraintTop_toTopOf="@id/tvTitleDeterminante" />
+
+
+        <TextView
+            android:id="@+id/tvTitleCadena"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/cadena"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDeterminante" />
+
+        <TextView
+            android:id="@+id/tvCadena"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@id/tvTitleCadena"
+            app:layout_constraintTop_toTopOf="@id/tvTitleCadena" />
+
+
+        <TextView
+            android:id="@+id/tvTitleSucursal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/sucursal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCadena" />
+
+        <TextView
+            android:id="@+id/tvSucursal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@id/tvTitleSucursal"
+            app:layout_constraintTop_toTopOf="@id/tvTitleSucursal" />
+
+
+        <TextView
+            android:id="@+id/tvTitleLatitud"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/latitud"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSucursal" />
+
+        <TextView
+            android:id="@+id/tvLatitud"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@id/tvTitleLatitud"
+            app:layout_constraintTop_toTopOf="@id/tvTitleLatitud" />
+
+
+        <TextView
+            android:id="@+id/tvTitleLongitud"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/longitud"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLatitud" />
+
+        <TextView
+            android:id="@+id/tvLongitud"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@id/tvTitleLongitud"
+            app:layout_constraintTop_toTopOf="@id/tvTitleLongitud" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
