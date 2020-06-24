@@ -1,6 +1,5 @@
 package com.diego.lara.domain
 
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -69,7 +68,6 @@ class TiendasRepository {
     ): MutableLiveData<List<Tiendas>> {
         val tiendas = MutableLiveData<List<Tiendas>>()
             webDS.download(Observer {
-                Log.e("Repo", "Dowload $it.tiendas")
                 if (it !is OnTiendasResponse) {
                     return@Observer
                 }

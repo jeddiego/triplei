@@ -5,10 +5,10 @@ import android.app.SearchManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
@@ -28,6 +28,7 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import kotlinx.android.synthetic.main.app_bar_main.view.*
 import kotlinx.android.synthetic.main.item_list.view.*
+import java.text.DecimalFormat
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -35,8 +36,9 @@ class MainActivity : AppCompatActivity() {
     var oldLength = 0
     var flagLocalSearch = false
     var queryFlagLocalSearch = ""
-    var currentLatitud = ""
-    var currentLongitud = ""
+    var currentLatitud = 0.0
+    var currentLongitud = 0.0
+    var kmsFormat: DecimalFormat = DecimalFormat("###,###.##")
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     @Inject
     lateinit var viewModel: TiendasViewModel
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     private val adapterMoviesList = GroupAdapter<GroupieViewHolder>().apply {
         setOnItemClickListener { item, _ ->
             if (item is TiendasItemView) {
-
+                distanceBetween(item.tiendas.latitud, item.tiendas.longitud)
             }
         }
     }
@@ -134,9 +136,17 @@ class MainActivity : AppCompatActivity() {
         }
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location : Location? ->
-                currentLatitud = location?.latitude.toString()
-                currentLongitud = location?.longitude.toString()
+                if(location != null){
+                    currentLatitud = location.latitude
+                    currentLongitud = location.longitude
+                }
             }
+    }
+
+    private fun distanceBetween(lat: Double, lon: Double){
+        val distance = FloatArray(1)
+        Location.distanceBetween(lat, lon, currentLatitud, currentLongitud, distance)
+        Toast.makeText(this, "Tu distancia a la tienda es de ${kmsFormat.format(distance[0]/1000)} kms", Toast.LENGTH_LONG).show()
     }
 
 }
